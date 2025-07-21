@@ -97,10 +97,29 @@ export default function BlogPage() {
 
 // Styled Components
 const BlogContainer = styled.div`
+  position: relative;
+  z-index: 1;
+  padding: ${({ theme }) => `${theme.spacing[16]} ${theme.spacing[6]}`};
   max-width: 1200px;
   margin: 0 auto;
-  padding: ${({ theme }) => `${theme.spacing[16]} ${theme.spacing[6]}`};
+
+  &::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('karthikeyan.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.06; /* low opacity for subtle effect */
+    pointer-events: none;
+    z-index: -1;
+  }
 `;
+
 
 const BlogHeader = styled.div`
   text-align: center;
@@ -133,12 +152,14 @@ const StyledLink = styled(Link)`
 `;
 
 const BlogCard = styled(motion.article)`
-  background: ${({ theme }) => theme.colors.background};
   border: 1px solid ${({ theme }) => theme.colors.border};
   border-radius: ${({ theme }) => theme.borderRadius['2xl']};
   padding: ${({ theme }) => theme.spacing[8]};
   transition: all ${({ theme }) => theme.transitions.base};
   cursor: pointer;
+  backdrop-filter: blur(10px) saturate(180%);
+  -webkit-backdrop-filter: blur(10px) saturate(180%);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
 
   &:hover {
     transform: translateY(-4px);
@@ -146,6 +167,7 @@ const BlogCard = styled(motion.article)`
     border-color: ${({ theme }) => theme.colors.primary};
   }
 `;
+
 
 const CardTitle = styled.h2`
   font-size: ${({ theme }) => theme.fontSizes['3xl']};

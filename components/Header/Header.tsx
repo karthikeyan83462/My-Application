@@ -60,6 +60,7 @@ const MobileMenuButton = styled.button`
     display: flex;
   }
 `;
+
 const HeaderContainer = styled.header<{ $scrolled: boolean }>`
   position: fixed;
   left: 0;
